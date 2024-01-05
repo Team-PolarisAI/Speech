@@ -1,10 +1,10 @@
-import os
 from google.cloud import texttospeech
+from google.oauth2 import service_account
 
 import io
 import streamlit as st
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'secret.json'
+creds = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"])
 
 def synthesize_speech(text,language = '日本語', gend = 'default',):
     genderType = {
@@ -26,7 +26,7 @@ def synthesize_speech(text,language = '日本語', gend = 'default',):
 
     lang = language
 
-    client = texttospeech.TextToSpeechClient()
+    client = texttospeech.TextToSpeechClient(credentials=creds)
 
     synthesis_input = texttospeech.SynthesisInput(text=text)
 
