@@ -3,9 +3,6 @@ from google.cloud import texttospeech
 
 import io
 import streamlit as st
-from dotenv import load_dotenv
-
-load_dotenv()
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'secret.json'
 
